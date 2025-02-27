@@ -10,7 +10,7 @@ from coati.distributed.loss import PolicyLoss, ValueLoss
 from coati.distributed.reward.reward_fn import math_reward_fn
 from coati.distributed.reward.verifiable_reward import VerifiableReward
 from coati.distributed.utils import calc_action_log_probs, compute_reward_ppo
-from coati.models import Critic
+from coati.models import Critic, disable_dropout
 from torch.utils.tensorboard import SummaryWriter
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
@@ -62,6 +62,9 @@ class PPOConsumer(BaseConsumer):
         self.critic_model = Critic(rm_path, **model_config)
         self.critic_model.model.gradient_checkpointing_enable()
         self.critic_model.train()
+        # Disable dropout
+        disable_dropout(self.policy_model)
+        disable_dropout(self.critic_model)
         self.policy_optimizer = HybridAdam(self.policy_model.parameters(), lr=1e-6)
         self.critic_optimizer = HybridAdam(self.critic_model.parameters(), lr=5e-6)
         self.accum_loss = torch.zeros(1, device=self.device)
