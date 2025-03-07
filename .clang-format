@@ -1,1 +1,11 @@
+import os
+import sys
+from typing import Dict, List, Optional
+
+# 配置项
+CONFIG = {
+    'debug': True,
+    'version': '1.0.0'
+}
+
 BasedOnStyle: Google
