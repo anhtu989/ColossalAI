@@ -1,3 +1,7 @@
+# 项目文档
+
+> 本文档用于说明项目的主要功能和使用方法。
+
 # Colossal-AI
 <div id="top" align="center">
 
