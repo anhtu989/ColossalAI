@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+# 更新代码实现
 # -*- encoding: utf-8 -*-
 
 import os
