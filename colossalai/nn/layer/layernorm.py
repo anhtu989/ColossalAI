@@ -69,3 +69,6 @@ class MixedFusedLayerNorm(torch.nn.Module):
 
     def __repr__(self):
         return f"MixedFusedLayerNorm(normalized_shape={self.normalized_shape}, eps={self.eps})"
+
+
+# TODO: 添加单元测试
